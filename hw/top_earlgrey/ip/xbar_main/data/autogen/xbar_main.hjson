@@ -69,12 +69,6 @@
     }
     { struct: "tl"
       type:   "req_rsp"
-      name:   "tl_spi_host1"
-      act:    "req"
-      package: "tlul_pkg"
-    }
-    { struct: "tl"
-      type:   "req_rsp"
       name:   "tl_usbdev"
       act:    "req"
       package: "tlul_pkg"

@@ -163,12 +163,8 @@
       { name: "sys_io_div4",    gen: true,  type: "top", parent: "sys_src", clock: "io_div4" },
       { name: "spi_device",     gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
       { name: "spi_host0",      gen: true,  type: "top", parent: "lc_src", clock: "io",      sw: true },
-      { name: "spi_host1",      gen: true,  type: "top", parent: "lc_src", clock: "io_div2", sw: true },
       { name: "usb",            gen: true,  type: "top", parent: "lc_src", clock: "usb",     sw: true },
       { name: "usb_aon",        gen: true,  type: "top", parent: "lc_src", clock: "aon",     sw: true },
-      { name: "i2c0",           gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
-      { name: "i2c1",           gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
-      { name: "i2c2",           gen: true,  type: "top", parent: "lc_src", clock: "io_div4", sw: true },
     ]
   },
   // The reset requests: peripherals are deduced, but internal and debug need
@@ -221,28 +217,19 @@
                 '''
           nodes: [
             "uart0",
-            "uart1",
-            "uart2",
-            "uart3",
             "gpio",
             "spi_device",
-            "i2c0",
-            "i2c1",
-            "i2c2",
-            "pattgen",
             "rv_timer"
             "otp_ctrl",
             "lc_ctrl.regs",
             "alert_handler",
             "spi_host0",
-            "spi_host1",
             "usbdev",
             "pwrmgr_aon",
             "rstmgr_aon",
             "clkmgr_aon",
             "sysrst_ctrl_aon",
             "adc_ctrl_aon",
-            "pwm_aon",
             "pinmux_aon",
             "aon_timer_aon",
             "ast",
@@ -298,57 +285,6 @@
         hart: "0x40000000",
       },
     },
-    { name: "uart1",    // instance name
-      type: "uart",     // Must be matched to the ip name in `ip.hjson` (_reg, _cfg permitted)
-                        // and `hw/ip/{type}`
-
-      // clock connections defines the port to top level clock connection
-      // the ip.hjson will declare the clock port names
-      // If none are defined at ip.hjson, clk_i is used by default
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      // reset connections defines the port to top level reset connection
-      // the ip.hjson will declare the reset port names
-      // If none are defined at ip.hjson, rst_ni is used by default
-      reset_connections: {rst_ni: "lc_io_div4"},
-      base_addr: {
-        hart: "0x40010000",
-      },
-    },
-    { name: "uart2",    // instance name
-      type: "uart",     // Must be matched to the ip name in `ip.hjson` (_reg, _cfg permitted)
-                        // and `hw/ip/{type}`
-
-      // clock connections defines the port to top level clock connection
-      // the ip.hjson will declare the clock port names
-      // If none are defined at ip.hjson, clk_i is used by default
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      // reset connections defines the port to top level reset connection
-      // the ip.hjson will declare the reset port names
-      // If none are defined at ip.hjson, rst_ni is used by default
-      reset_connections: {rst_ni: "lc_io_div4"},
-      base_addr: {
-        hart: "0x40020000",
-      },
-    },
-    { name: "uart3",    // instance name
-      type: "uart",     // Must be matched to the ip name in `ip.hjson` (_reg, _cfg permitted)
-                        // and `hw/ip/{type}`
-
-      // clock connections defines the port to top level clock connection
-      // the ip.hjson will declare the clock port names
-      // If none are defined at ip.hjson, clk_i is used by default
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      // reset connections defines the port to top level reset connection
-      // the ip.hjson will declare the reset port names
-      // If none are defined at ip.hjson, rst_ni is used by default
-      reset_connections: {rst_ni: "lc_io_div4"},
-      base_addr: {
-        hart: "0x40030000",
-      },
-    },
     { name: "gpio",
       type: "gpio",
       template_type: "gpio",
@@ -371,42 +307,6 @@
       reset_connections: {rst_ni: "spi_device"},
       base_addr: {
         hart: "0x40050000",
-      },
-    },
-    { name: "i2c0",
-      type: "i2c",
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "i2c0"},
-      base_addr: {
-        hart: "0x40080000",
-      },
-    },
-    { name: "i2c1",
-      type: "i2c",
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "i2c1"},
-      base_addr: {
-        hart: "0x40090000",
-      },
-    },
-    { name: "i2c2",
-      type: "i2c",
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "i2c2"},
-      base_addr: {
-        hart: "0x400A0000",
-      },
-    },
-    { name: "pattgen",
-      type: "pattgen",
-      clock_srcs: {clk_i: "io_div4"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "lc_io_div4"},
-      base_addr: {
-        hart: "0x400E0000",
       },
     },
     { name: "rv_timer",
@@ -491,15 +391,6 @@
       reset_connections: {rst_ni: "spi_host0"},
       base_addr: {
         hart: "0x40300000",
-      },
-    },
-    { name: "spi_host1",
-      type: "spi_host",
-      clock_srcs: {clk_i: "io_div2"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "spi_host1"},
-      base_addr: {
-        hart: "0x40310000",
       },
     },
     { name: "usbdev",
@@ -649,18 +540,6 @@
       base_addr: {
         hart: "0x40440000",
       }
-    },
-    { name: "pwm_aon",
-      type: "pwm",
-      template_type: "pwm",
-      clock_srcs: {clk_i: "io_div4", clk_core_i: "aon"},
-      clock_group: "peri",
-      reset_connections: {rst_ni: "lc_io_div4", rst_core_ni: "lc_aon"},
-      domain: "Aon",
-      base_addr: {
-        hart: "0x40450000",
-      },
-      attr: "ipgen",
     },
     { name: "pinmux_aon",
       type: "pinmux",
@@ -1154,9 +1033,6 @@
                                    'otp_macro.obs_ctrl'],
       'ast.ram_1p_cfg'          : ['otbn.ram_cfg_imem',
                                    'otbn.ram_cfg_dmem',
-                                   'i2c0.ram_cfg',
-                                   'i2c1.ram_cfg',
-                                   'i2c2.ram_cfg',
                                    'rv_core_ibex.ram_cfg_icache_tag',
                                    'rv_core_ibex.ram_cfg_icache_data'],
       'ast.spi_ram_2p_cfg'      : ['spi_device.ram_cfg_sys2spi',
@@ -1432,15 +1308,13 @@
       clock_srcs: {clk_main_i: "main",
                    clk_fixed_i: "io_div4",
                    clk_usb_i: "usb",
-                   clk_spi_host0_i: "io",
-                   clk_spi_host1_i: "io_div2"},
+                   clk_spi_host0_i: "io"},
       clock_group: "infra",
       reset: "lc",
       reset_connections: {rst_main_ni: "lc",
                           rst_fixed_ni: "lc_io_div4",
                           rst_usb_ni: "lc_usb",
-                          rst_spi_host0_ni: "lc_io",
-                          rst_spi_host1_ni: "lc_io_div2"}
+                          rst_spi_host0_ni: "lc_io"}
     },
     { name: "peri",
       clock_srcs: {clk_peri_i: "io_div4", },
@@ -1616,18 +1490,9 @@
       // MIOs
       { instance: "gpio",            port: '',               connection: 'muxed' , pad: ''             , desc: ''},
       { instance: "uart0",           port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "uart1",           port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "uart2",           port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "uart3",           port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "i2c0",            port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "i2c1",            port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "i2c2",            port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "pattgen",         port: '',               connection: 'muxed' , pad: ''             , desc: ''},
       { instance: "spi_device",      port: 'tpm_csb',        connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "spi_host1",       port: '',               connection: 'muxed' , pad: ''             , desc: ''},
       { instance: "flash_ctrl",      port: '',               connection: 'muxed' , pad: ''             , desc: ''},
       { instance: "sensor_ctrl_aon", port: '',               connection: 'muxed' , pad: ''             , desc: ''},
-      { instance: "pwm_aon",         port: '',               connection: 'muxed' , pad: ''             , desc: ''},
       { instance: "otp_macro",        port: 'test[0]',        connection: 'muxed' , pad: ''             , desc: ''},
       // Sysrst ctrl has both muxed and dedicated IOs
       { instance: "sysrst_ctrl_aon", port: 'ac_present',     connection: 'muxed' , pad: ''             , desc: ''},

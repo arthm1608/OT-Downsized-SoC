@@ -141,7 +141,7 @@ otp_json(
                 # See `alert_class_t` in
                 # sw/device/silicon_creator/lib/drivers/alert.h
                 "OWNER_SW_CFG_ROM_ALERT_CLASSIFICATION": otp_alert_classification(
-                    alert_list = EARLGREY_ALERTS,
+                    alert_list = [a for a in EARLGREY_ALERTS if "pwm" not in a and "i2c" not in a and "pattgen" not in a],
                     # The ordering is "prod, prod_end, dev, rma"
                     default = "X, X, X, X",
                 ),

@@ -349,13 +349,13 @@
     { name: "NMioPeriphIn",
       desc: "Number of muxed peripheral inputs",
       type: "int",
-      default: "57",
+      default: "44",
       local: "true"
     },
     { name: "NMioPeriphOut",
       desc: "Number of muxed peripheral outputs",
       type: "int",
-      default: "75",
+      default: "50",
       local: "true"
     },
     { name: "NMioPads",
@@ -508,7 +508,7 @@
                   regwen_multi: "true",
                   cname:        "OUT",
                   fields: [
-                    { bits: "6:0",
+                    { bits: "5:0",
                       name: "OUT",
                       desc: '''
                       0: tie constantly to zero, 1: tie constantly to 1, 2: high-Z,

@@ -15,29 +15,20 @@ The main address space, shared between the CPU and DM
 | Module            | Interface   | Base Address   | Size (bytes)   | Size (words)   | Description                      |
 |-------------------|-------------|----------------|----------------|----------------|----------------------------------|
 | uart0             | default     | `0x40000000`   | `0x40`         | `0x10`         | uart0                            |
-| uart1             | default     | `0x40010000`   | `0x40`         | `0x10`         | uart1                            |
-| uart2             | default     | `0x40020000`   | `0x40`         | `0x10`         | uart2                            |
-| uart3             | default     | `0x40030000`   | `0x40`         | `0x10`         | uart3                            |
 | gpio              | default     | `0x40040000`   | `0x80`         | `0x20`         | gpio                             |
 | spi_device        | default     | `0x40050000`   | `0x2000`       | `0x800`        | spi_device                       |
-| i2c0              | default     | `0x40080000`   | `0x80`         | `0x20`         | i2c0                             |
-| i2c1              | default     | `0x40090000`   | `0x80`         | `0x20`         | i2c1                             |
-| i2c2              | default     | `0x400A0000`   | `0x80`         | `0x20`         | i2c2                             |
-| pattgen           | default     | `0x400E0000`   | `0x40`         | `0x10`         | pattgen                          |
 | rv_timer          | default     | `0x40100000`   | `0x200`        | `0x80`         | rv_timer                         |
 | otp_ctrl          | core        | `0x40130000`   | `0x1000`       | `0x400`        | core device on otp_ctrl          |
 | otp_macro         | prim        | `0x40138000`   | `0x20`         | `0x8`          | prim device on otp_macro         |
 | lc_ctrl           | regs        | `0x40140000`   | `0x100`        | `0x40`         | regs device on lc_ctrl           |
 | alert_handler     | default     | `0x40150000`   | `0x800`        | `0x200`        | alert_handler                    |
 | spi_host0         | default     | `0x40300000`   | `0x40`         | `0x10`         | spi_host0                        |
-| spi_host1         | default     | `0x40310000`   | `0x40`         | `0x10`         | spi_host1                        |
 | usbdev            | default     | `0x40320000`   | `0x1000`       | `0x400`        | usbdev                           |
 | pwrmgr_aon        | default     | `0x40400000`   | `0x80`         | `0x20`         | pwrmgr_aon                       |
 | rstmgr_aon        | default     | `0x40410000`   | `0x80`         | `0x20`         | rstmgr_aon                       |
 | clkmgr_aon        | default     | `0x40420000`   | `0x80`         | `0x20`         | clkmgr_aon                       |
 | sysrst_ctrl_aon   | default     | `0x40430000`   | `0x100`        | `0x40`         | sysrst_ctrl_aon                  |
 | adc_ctrl_aon      | default     | `0x40440000`   | `0x80`         | `0x20`         | adc_ctrl_aon                     |
-| pwm_aon           | default     | `0x40450000`   | `0x80`         | `0x20`         | pwm_aon                          |
 | pinmux_aon        | default     | `0x40460000`   | `0x1000`       | `0x400`        | pinmux_aon                       |
 | aon_timer_aon     | default     | `0x40470000`   | `0x40`         | `0x10`         | aon_timer_aon                    |
 | ast               | default     | `0x40480000`   | `0x400`        | `0x100`        | ast                              |

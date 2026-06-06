@@ -84,57 +84,6 @@
  */
 #define TOP_EARLGREY_UART0_SIZE_BYTES 0x40
 /**
- * Peripheral base address for uart1 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_UART1_BASE_ADDR 0x40010000
-
-/**
- * Peripheral size for uart1 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_UART1_BASE_ADDR and
- * `TOP_EARLGREY_UART1_BASE_ADDR + TOP_EARLGREY_UART1_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_UART1_SIZE_BYTES 0x40
-/**
- * Peripheral base address for uart2 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_UART2_BASE_ADDR 0x40020000
-
-/**
- * Peripheral size for uart2 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_UART2_BASE_ADDR and
- * `TOP_EARLGREY_UART2_BASE_ADDR + TOP_EARLGREY_UART2_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_UART2_SIZE_BYTES 0x40
-/**
- * Peripheral base address for uart3 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_UART3_BASE_ADDR 0x40030000
-
-/**
- * Peripheral size for uart3 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_UART3_BASE_ADDR and
- * `TOP_EARLGREY_UART3_BASE_ADDR + TOP_EARLGREY_UART3_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_UART3_SIZE_BYTES 0x40
-/**
  * Peripheral base address for gpio in top earlgrey.
  *
  * This should be used with #mmio_region_from_addr to access the memory-mapped
@@ -168,74 +117,6 @@
  * `TOP_EARLGREY_SPI_DEVICE_BASE_ADDR + TOP_EARLGREY_SPI_DEVICE_SIZE_BYTES`.
  */
 #define TOP_EARLGREY_SPI_DEVICE_SIZE_BYTES 0x2000
-/**
- * Peripheral base address for i2c0 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_I2C0_BASE_ADDR 0x40080000
-
-/**
- * Peripheral size for i2c0 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_I2C0_BASE_ADDR and
- * `TOP_EARLGREY_I2C0_BASE_ADDR + TOP_EARLGREY_I2C0_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_I2C0_SIZE_BYTES 0x80
-/**
- * Peripheral base address for i2c1 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_I2C1_BASE_ADDR 0x40090000
-
-/**
- * Peripheral size for i2c1 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_I2C1_BASE_ADDR and
- * `TOP_EARLGREY_I2C1_BASE_ADDR + TOP_EARLGREY_I2C1_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_I2C1_SIZE_BYTES 0x80
-/**
- * Peripheral base address for i2c2 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_I2C2_BASE_ADDR 0x400A0000
-
-/**
- * Peripheral size for i2c2 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_I2C2_BASE_ADDR and
- * `TOP_EARLGREY_I2C2_BASE_ADDR + TOP_EARLGREY_I2C2_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_I2C2_SIZE_BYTES 0x80
-/**
- * Peripheral base address for pattgen in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_PATTGEN_BASE_ADDR 0x400E0000
-
-/**
- * Peripheral size for pattgen in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_PATTGEN_BASE_ADDR and
- * `TOP_EARLGREY_PATTGEN_BASE_ADDR + TOP_EARLGREY_PATTGEN_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_PATTGEN_SIZE_BYTES 0x40
 /**
  * Peripheral base address for rv_timer in top earlgrey.
  *
@@ -339,23 +220,6 @@
  */
 #define TOP_EARLGREY_SPI_HOST0_SIZE_BYTES 0x40
 /**
- * Peripheral base address for spi_host1 in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_SPI_HOST1_BASE_ADDR 0x40310000
-
-/**
- * Peripheral size for spi_host1 in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_SPI_HOST1_BASE_ADDR and
- * `TOP_EARLGREY_SPI_HOST1_BASE_ADDR + TOP_EARLGREY_SPI_HOST1_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_SPI_HOST1_SIZE_BYTES 0x40
-/**
  * Peripheral base address for usbdev in top earlgrey.
  *
  * This should be used with #mmio_region_from_addr to access the memory-mapped
@@ -457,23 +321,6 @@
  * `TOP_EARLGREY_ADC_CTRL_AON_BASE_ADDR + TOP_EARLGREY_ADC_CTRL_AON_SIZE_BYTES`.
  */
 #define TOP_EARLGREY_ADC_CTRL_AON_SIZE_BYTES 0x80
-/**
- * Peripheral base address for pwm_aon in top earlgrey.
- *
- * This should be used with #mmio_region_from_addr to access the memory-mapped
- * registers associated with the peripheral (usually via a DIF).
- */
-#define TOP_EARLGREY_PWM_AON_BASE_ADDR 0x40450000
-
-/**
- * Peripheral size for pwm_aon in top earlgrey.
- *
- * This is the size (in bytes) of the peripheral's reserved memory area. All
- * memory-mapped registers associated with this peripheral should have an
- * address between #TOP_EARLGREY_PWM_AON_BASE_ADDR and
- * `TOP_EARLGREY_PWM_AON_BASE_ADDR + TOP_EARLGREY_PWM_AON_SIZE_BYTES`.
- */
-#define TOP_EARLGREY_PWM_AON_SIZE_BYTES 0x80
 /**
  * Peripheral base address for pinmux_aon in top earlgrey.
  *

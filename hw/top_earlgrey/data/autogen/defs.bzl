@@ -19,16 +19,13 @@ load("//hw/ip/entropy_src:defs.bzl", "ENTROPY_SRC")
 load("//hw/top_earlgrey/ip_autogen/flash_ctrl:defs.bzl", "FLASH_CTRL")
 load("//hw/top_earlgrey/ip_autogen/gpio:defs.bzl", "GPIO")
 load("//hw/ip/hmac:defs.bzl", "HMAC")
-load("//hw/ip/i2c:defs.bzl", "I2C")
 load("//hw/ip/keymgr:defs.bzl", "KEYMGR")
 load("//hw/ip/kmac:defs.bzl", "KMAC")
 load("//hw/ip/lc_ctrl:defs.bzl", "LC_CTRL")
 load("//hw/ip/otbn:defs.bzl", "OTBN")
 load("//hw/top_earlgrey/ip_autogen/otp_ctrl:defs.bzl", "OTP_CTRL")
 load("//hw/ip/otp_macro:defs.bzl", "OTP_MACRO")
-load("//hw/ip/pattgen:defs.bzl", "PATTGEN")
 load("//hw/top_earlgrey/ip_autogen/pinmux:defs.bzl", "PINMUX")
-load("//hw/top_earlgrey/ip_autogen/pwm:defs.bzl", "PWM")
 load("//hw/top_earlgrey/ip_autogen/pwrmgr:defs.bzl", "PWRMGR")
 load("//hw/ip/rom_ctrl:defs.bzl", "ROM_CTRL")
 load("//hw/top_earlgrey/ip_autogen/rstmgr:defs.bzl", "RSTMGR")
@@ -57,16 +54,13 @@ EARLGREY_IPS = [
     FLASH_CTRL,
     GPIO,
     HMAC,
-    I2C,
     KEYMGR,
     KMAC,
     LC_CTRL,
     OTBN,
     OTP_CTRL,
     OTP_MACRO,
-    PATTGEN,
     PINMUX,
-    PWM,
     PWRMGR,
     ROM_CTRL,
     RSTMGR,
@@ -85,15 +79,8 @@ EARLGREY_IPS = [
 
 EARLGREY_ALERTS = [
     "uart0_fatal_fault",
-    "uart1_fatal_fault",
-    "uart2_fatal_fault",
-    "uart3_fatal_fault",
     "gpio_fatal_fault",
     "spi_device_fatal_fault",
-    "i2c0_fatal_fault",
-    "i2c1_fatal_fault",
-    "i2c2_fatal_fault",
-    "pattgen_fatal_fault",
     "rv_timer_fatal_fault",
     "otp_ctrl_fatal_macro_error",
     "otp_ctrl_fatal_check_error",
@@ -104,7 +91,6 @@ EARLGREY_ALERTS = [
     "lc_ctrl_fatal_state_error",
     "lc_ctrl_fatal_bus_integ_error",
     "spi_host0_fatal_fault",
-    "spi_host1_fatal_fault",
     "usbdev_fatal_fault",
     "pwrmgr_aon_fatal_fault",
     "rstmgr_aon_fatal_fault",
@@ -113,7 +99,6 @@ EARLGREY_ALERTS = [
     "clkmgr_aon_fatal_fault",
     "sysrst_ctrl_aon_fatal_fault",
     "adc_ctrl_aon_fatal_fault",
-    "pwm_aon_fatal_fault",
     "pinmux_aon_fatal_fault",
     "aon_timer_aon_fatal_fault",
     "sensor_ctrl_aon_recov_alert",

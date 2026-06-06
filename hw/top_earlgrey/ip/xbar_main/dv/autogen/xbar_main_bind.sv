@@ -62,12 +62,6 @@ module xbar_main_bind;
     .h2d    (tl_spi_host0_o),
     .d2h    (tl_spi_host0_i)
   );
-  bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_spi_host1 (
-    .clk_i  (clk_spi_host1_i),
-    .rst_ni (rst_spi_host1_ni),
-    .h2d    (tl_spi_host1_o),
-    .d2h    (tl_spi_host1_i)
-  );
   bind xbar_main tlul_assert #(.EndpointType("Host")) tlul_assert_device_usbdev (
     .clk_i  (clk_usb_i),
     .rst_ni (rst_usb_ni),

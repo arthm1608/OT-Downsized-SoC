@@ -10,30 +10,6 @@ tl_device_t xbar_devices[$] = '{
     '{"uart0", '{
         '{32'h40000000, 32'h4000003f}
     }},
-    '{"uart1", '{
-        '{32'h40010000, 32'h4001003f}
-    }},
-    '{"uart2", '{
-        '{32'h40020000, 32'h4002003f}
-    }},
-    '{"uart3", '{
-        '{32'h40030000, 32'h4003003f}
-    }},
-    '{"i2c0", '{
-        '{32'h40080000, 32'h4008007f}
-    }},
-    '{"i2c1", '{
-        '{32'h40090000, 32'h4009007f}
-    }},
-    '{"i2c2", '{
-        '{32'h400a0000, 32'h400a007f}
-    }},
-    '{"pattgen", '{
-        '{32'h400e0000, 32'h400e003f}
-    }},
-    '{"pwm_aon", '{
-        '{32'h40450000, 32'h4045007f}
-    }},
     '{"gpio", '{
         '{32'h40040000, 32'h4004007f}
     }},
@@ -93,13 +69,6 @@ tl_device_t xbar_devices[$] = '{
 tl_host_t xbar_hosts[$] = '{
     '{"main", 0, '{
         "uart0",
-        "uart1",
-        "uart2",
-        "uart3",
-        "i2c0",
-        "i2c1",
-        "i2c2",
-        "pattgen",
         "gpio",
         "spi_device",
         "rv_timer",
@@ -117,6 +86,5 @@ tl_host_t xbar_hosts[$] = '{
         "sram_ctrl_ret_aon__regs",
         "aon_timer_aon",
         "adc_ctrl_aon",
-        "sysrst_ctrl_aon",
-        "pwm_aon"}}
+        "sysrst_ctrl_aon"}}
 };

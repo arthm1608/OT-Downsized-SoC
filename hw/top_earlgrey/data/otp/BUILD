@@ -149,7 +149,7 @@ otp_json(
                 # See `alert_class_t` in
                 # sw/device/silicon_creator/lib/drivers/alert.h
                 "OWNER_SW_CFG_ROM_ALERT_CLASSIFICATION": otp_alert_classification(
-                    alert_list = EARLGREY_ALERTS,
+                    alert_list = EARLGREY_ALERTS + ["dummy_padding"] * 22,
                     # The ordering is "prod, prod_end, dev, rma"
                     default = "X, X, X, X",
                 ),

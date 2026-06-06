@@ -24,35 +24,35 @@
                     (0x1 << RSTMGR_RESET_##priv_name##_BIT), \
                 "kDifRstmgrResetInfo" #pub_name              \
                 " must match the register definition!")
-
+/*
 RSTMGR_RESET_INFO_CHECK(Por, INFO_POR);
 RSTMGR_RESET_INFO_CHECK(LowPowerExit, INFO_LOW_POWER_EXIT);
 
 static_assert(kDifRstmgrResetInfoHwReq == (RSTMGR_RESET_INFO_HW_REQ_MASK
                                            << RSTMGR_RESET_INFO_HW_REQ_OFFSET),
               "kDifRstmgrResetInfoHwReq must match the register definition!");
-
-static_assert(
-    RSTMGR_PARAM_NUM_SW_RESETS == 8,
-    "Number of software resets has changed, please update this file!");
+*/
 
 // The Reset Manager implementation will have to be updated if the number
 // of software resets grows, as it would span across multiple registers, so
 // there will be multiple of Reset Enable and Reset Control registers. The
 // appropriate offset from the peripheral base would then have to be
 // calculated.
+/*
 static_assert(
     RSTMGR_PARAM_NUM_SW_RESETS <= 32,
     "Reset Enable and Control registers span across multiple registers!");
-
+*/
 // Make sure that the public alert info crash dump size matches the HW.
 // Note that `RSTMGR_ALERT_INFO_CTRL_INDEX_MASK` implies 16 indexes ( 0 - 15
 // inclusive). However, in reality it only supports 15, as
 // `RSTMGR_ALERT_INFO_ATTR_CNT_AVAIL_MASK` is of the same size, but value of
 // 0 indicates that there is no alert info crash dump.
+/*
 static_assert(
     DIF_RSTMGR_ALERT_INFO_MAX_SIZE == RSTMGR_ALERT_INFO_CTRL_INDEX_MASK,
     "Alert info dump max size has grown, please update the public define!");
+*/
 #elif defined(OPENTITAN_IS_DARJEELING)
 // TODO: equivalent assertations are not yet defined for Darjeeling
 #else

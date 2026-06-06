@@ -206,87 +206,11 @@ module rv_plic import rv_plic_reg_pkg::*; #(
   assign prio[107] = reg2hw.prio[107].q;
   assign prio[108] = reg2hw.prio[108].q;
   assign prio[109] = reg2hw.prio[109].q;
-  assign prio[110] = reg2hw.prio[110].q;
-  assign prio[111] = reg2hw.prio[111].q;
-  assign prio[112] = reg2hw.prio[112].q;
-  assign prio[113] = reg2hw.prio[113].q;
-  assign prio[114] = reg2hw.prio[114].q;
-  assign prio[115] = reg2hw.prio[115].q;
-  assign prio[116] = reg2hw.prio[116].q;
-  assign prio[117] = reg2hw.prio[117].q;
-  assign prio[118] = reg2hw.prio[118].q;
-  assign prio[119] = reg2hw.prio[119].q;
-  assign prio[120] = reg2hw.prio[120].q;
-  assign prio[121] = reg2hw.prio[121].q;
-  assign prio[122] = reg2hw.prio[122].q;
-  assign prio[123] = reg2hw.prio[123].q;
-  assign prio[124] = reg2hw.prio[124].q;
-  assign prio[125] = reg2hw.prio[125].q;
-  assign prio[126] = reg2hw.prio[126].q;
-  assign prio[127] = reg2hw.prio[127].q;
-  assign prio[128] = reg2hw.prio[128].q;
-  assign prio[129] = reg2hw.prio[129].q;
-  assign prio[130] = reg2hw.prio[130].q;
-  assign prio[131] = reg2hw.prio[131].q;
-  assign prio[132] = reg2hw.prio[132].q;
-  assign prio[133] = reg2hw.prio[133].q;
-  assign prio[134] = reg2hw.prio[134].q;
-  assign prio[135] = reg2hw.prio[135].q;
-  assign prio[136] = reg2hw.prio[136].q;
-  assign prio[137] = reg2hw.prio[137].q;
-  assign prio[138] = reg2hw.prio[138].q;
-  assign prio[139] = reg2hw.prio[139].q;
-  assign prio[140] = reg2hw.prio[140].q;
-  assign prio[141] = reg2hw.prio[141].q;
-  assign prio[142] = reg2hw.prio[142].q;
-  assign prio[143] = reg2hw.prio[143].q;
-  assign prio[144] = reg2hw.prio[144].q;
-  assign prio[145] = reg2hw.prio[145].q;
-  assign prio[146] = reg2hw.prio[146].q;
-  assign prio[147] = reg2hw.prio[147].q;
-  assign prio[148] = reg2hw.prio[148].q;
-  assign prio[149] = reg2hw.prio[149].q;
-  assign prio[150] = reg2hw.prio[150].q;
-  assign prio[151] = reg2hw.prio[151].q;
-  assign prio[152] = reg2hw.prio[152].q;
-  assign prio[153] = reg2hw.prio[153].q;
-  assign prio[154] = reg2hw.prio[154].q;
-  assign prio[155] = reg2hw.prio[155].q;
-  assign prio[156] = reg2hw.prio[156].q;
-  assign prio[157] = reg2hw.prio[157].q;
-  assign prio[158] = reg2hw.prio[158].q;
-  assign prio[159] = reg2hw.prio[159].q;
-  assign prio[160] = reg2hw.prio[160].q;
-  assign prio[161] = reg2hw.prio[161].q;
-  assign prio[162] = reg2hw.prio[162].q;
-  assign prio[163] = reg2hw.prio[163].q;
-  assign prio[164] = reg2hw.prio[164].q;
-  assign prio[165] = reg2hw.prio[165].q;
-  assign prio[166] = reg2hw.prio[166].q;
-  assign prio[167] = reg2hw.prio[167].q;
-  assign prio[168] = reg2hw.prio[168].q;
-  assign prio[169] = reg2hw.prio[169].q;
-  assign prio[170] = reg2hw.prio[170].q;
-  assign prio[171] = reg2hw.prio[171].q;
-  assign prio[172] = reg2hw.prio[172].q;
-  assign prio[173] = reg2hw.prio[173].q;
-  assign prio[174] = reg2hw.prio[174].q;
-  assign prio[175] = reg2hw.prio[175].q;
-  assign prio[176] = reg2hw.prio[176].q;
-  assign prio[177] = reg2hw.prio[177].q;
-  assign prio[178] = reg2hw.prio[178].q;
-  assign prio[179] = reg2hw.prio[179].q;
-  assign prio[180] = reg2hw.prio[180].q;
-  assign prio[181] = reg2hw.prio[181].q;
-  assign prio[182] = reg2hw.prio[182].q;
-  assign prio[183] = reg2hw.prio[183].q;
-  assign prio[184] = reg2hw.prio[184].q;
-  assign prio[185] = reg2hw.prio[185].q;
 
   //////////////////////
   // Interrupt Enable //
   //////////////////////
-  for (genvar s = 0; s < 186; s++) begin : gen_ie0
+  for (genvar s = 0; s < 110; s++) begin : gen_ie0
     assign ie[0][s] = reg2hw.ie0[s].q;
   end
 
@@ -312,7 +236,7 @@ module rv_plic import rv_plic_reg_pkg::*; #(
   ////////
   // IP //
   ////////
-  for (genvar s = 0; s < 186; s++) begin : gen_ip
+  for (genvar s = 0; s < 110; s++) begin : gen_ip
     assign hw2reg.ip[s].de = 1'b1; // Always write
     assign hw2reg.ip[s].d  = ip[s];
   end

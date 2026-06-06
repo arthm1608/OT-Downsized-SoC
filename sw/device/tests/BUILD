@@ -515,7 +515,6 @@ opentitan_test(
     ),
     deps = [
         "//hw/top:alert_handler_c_regs",
-        "//hw/top:i2c_c_regs",
         "//hw/top:spi_device_c_regs",
         "//hw/top:spi_host_c_regs",
         "//hw/top:usbdev_c_regs",
@@ -523,7 +522,6 @@ opentitan_test(
         "//sw/device/lib/base:math",
         "//sw/device/lib/base:mmio",
         "//sw/device/lib/dif:alert_handler",
-        "//sw/device/lib/dif:i2c",
         "//sw/device/lib/dif:rstmgr",
         "//sw/device/lib/dif:rv_plic",
         "//sw/device/lib/dif:spi_device",
@@ -792,7 +790,6 @@ opentitan_test(
         "//sw/device/lib/dif:gpio",
         "//sw/device/lib/dif:otp_ctrl",
         "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwm",
         "//sw/device/lib/runtime:hart",
         "//sw/device/lib/runtime:log",
         "//sw/device/lib/testing:alert_handler_testutils",
@@ -820,7 +817,6 @@ opentitan_test(
         "//sw/device/lib/dif:gpio",
         "//sw/device/lib/dif:otp_ctrl",
         "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwm",
         "//sw/device/lib/dif:rv_plic",
         "//sw/device/lib/runtime:hart",
         "//sw/device/lib/runtime:irq",
@@ -3352,46 +3348,6 @@ opentitan_test(
         "//sw/device/lib/testing/test_framework:ottf_main",
     ],
 )
-
-opentitan_test(
-    name = "pwm_smoketest",
-    srcs = ["pwm_smoketest.c"],
-    exec_env = dicts.add(
-        EARLGREY_TEST_ENVS,
-        EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
-        {
-            "//hw/top_earlgrey:silicon_owner_sival_rom_ext": None,
-            "//hw/top_earlgrey:fpga_cw310_sival": None,
-        },
-    ),
-    fpga = fpga_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-            "{firmware:elf}"
-        """,
-        test_harness = "//sw/host/tests/chip/pwm_smoketest",
-    ),
-    silicon = silicon_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-            "{firmware:elf}"
-        """,
-        test_harness = "//sw/host/tests/chip/pwm_smoketest",
-    ),
-    deps = [
-        "//hw/top_earlgrey/sw/autogen:top_earlgrey",
-        "//sw/device/lib/dif:gpio",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwm",
-        "//sw/device/lib/runtime:hart",
-        "//sw/device/lib/runtime:ibex",
-        "//sw/device/lib/runtime:irq",
-        "//sw/device/lib/runtime:log",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-        "//sw/device/lib/testing/test_framework:ottf_utils",
-    ],
-)
-
 cc_library(
     name = "pwrmgr_sleep_resets_lib",
     srcs = ["pwrmgr_sleep_resets_lib.c"],
@@ -4061,14 +4017,12 @@ opentitan_test(
     ),
     verilator = verilator_params(timeout = "long"),
     deps = [
-        "//hw/top:i2c_c_regs",
         "//hw/top:spi_device_c_regs",
         "//hw/top:spi_host_c_regs",
         "//hw/top/dt",
         "//sw/device/lib/arch:device",
         "//sw/device/lib/base:memory",
         "//sw/device/lib/base:mmio",
-        "//sw/device/lib/dif:i2c",
         "//sw/device/lib/dif:rstmgr",
         "//sw/device/lib/dif:spi_device",
         "//sw/device/lib/dif:spi_host",
@@ -4532,37 +4486,6 @@ opentitan_test(
         "//sw/device/lib/runtime:print",
         "//sw/device/lib/testing:pwrmgr_testutils",
         "//sw/device/lib/testing:rv_plic_testutils",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-    ],
-)
-
-opentitan_test(
-    name = "sleep_pwm_pulses_test",
-    srcs = ["sleep_pwm_pulses_test.c"],
-    exec_env = dicts.add(
-        EARLGREY_TEST_ENVS,
-        EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
-        {
-            "//hw/top_earlgrey:silicon_creator": None,
-        },
-    ),
-    verilator = verilator_params(
-        timeout = "eternal",
-        tags = ["broken"],
-    ),
-    deps = [
-        "//hw/top:pwm_c_regs",
-        "//hw/top_earlgrey/sw/autogen:top_earlgrey",
-        "//sw/device/lib/base:mmio",
-        "//sw/device/lib/dif:aon_timer",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwm",
-        "//sw/device/lib/dif:pwrmgr",
-        "//sw/device/lib/dif:rstmgr",
-        "//sw/device/lib/runtime:log",
-        "//sw/device/lib/testing:aon_timer_testutils",
-        "//sw/device/lib/testing:pwrmgr_testutils",
-        "//sw/device/lib/testing:rstmgr_testutils",
         "//sw/device/lib/testing/test_framework:ottf_main",
     ],
 )
@@ -5745,7 +5668,6 @@ opentitan_test(
         "//sw/device/lib/base:mmio",
         "//sw/device/lib/dif:alert_handler",
         "//sw/device/lib/dif:aon_timer",
-        "//sw/device/lib/dif:i2c",
         "//sw/device/lib/dif:otp_ctrl",
         "//sw/device/lib/dif:pwrmgr",
         "//sw/device/lib/dif:rstmgr",
@@ -5966,10 +5888,7 @@ opentitan_test(
         "//hw/top:entropy_src_c_regs",
         "//hw/top:gpio_c_regs",
         "//hw/top:hmac_c_regs",
-        "//hw/top:i2c_c_regs",
         "//hw/top:kmac_c_regs",
-        "//hw/top:pattgen_c_regs",
-        "//hw/top:pwm_c_regs",
         "//hw/top:spi_host_c_regs",
         "//hw/top:uart_c_regs",
         "//hw/top/dt",
@@ -5985,12 +5904,9 @@ opentitan_test(
         "//sw/device/lib/dif:flash_ctrl",
         "//sw/device/lib/dif:gpio",
         "//sw/device/lib/dif:hmac",
-        "//sw/device/lib/dif:i2c",
         "//sw/device/lib/dif:kmac",
         "//sw/device/lib/dif:otbn",
-        "//sw/device/lib/dif:pattgen",
         "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwm",
         "//sw/device/lib/dif:rv_plic",
         "//sw/device/lib/dif:spi_device",
         "//sw/device/lib/dif:spi_host",
@@ -6715,120 +6631,6 @@ opentitan_test(
     ],
 )
 
-opentitan_test(
-    name = "i2c_target_smbus_arp_test",
-    srcs = [
-        "i2c_target_smbus_arp_test.c",
-    ],
-    exec_env = {
-        "//hw/top_earlgrey:fpga_cw310_sival": None,
-        "//hw/top_earlgrey:fpga_cw340_sival": None,
-    },
-    fpga = fpga_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-            "{firmware:elf}"
-        """,
-        test_harness = "//sw/host/tests/chip/i2c_target:i2c_target_smbus_arp",
-    ),
-    deps = [
-        "//sw/device/lib/arch:device",
-        "//sw/device/lib/dif:i2c",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:rv_plic",
-        "//sw/device/lib/testing:i2c_testutils",
-        "//sw/device/lib/testing:rv_plic_testutils",
-        "//sw/device/lib/testing/json:command",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-        "//sw/device/lib/testing/test_framework:ujson_ottf",
-        "//sw/device/lib/testing/test_framework:ujson_ottf_commands",
-    ],
-)
-
-opentitan_test(
-    name = "i2c_host_override_test",
-    srcs = [
-        "i2c_host_override_test.c",
-    ],
-    exec_env = dicts.add(
-        EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
-        {
-            "//hw/top_earlgrey:fpga_cw310_sival": None,
-            "//hw/top_earlgrey:fpga_cw340_sival": None,
-        },
-    ),
-    fpga = fpga_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-            "{firmware:elf}"
-        """,
-        test_harness = "//sw/host/tests/chip/i2c_host_override",
-    ),
-    silicon = silicon_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-            "{firmware:elf}"
-        """,
-        test_harness = "//sw/host/tests/chip/i2c_host_override",
-    ),
-    deps = [
-        "//sw/device/lib/arch:device",
-        "//sw/device/lib/dif:gpio",
-        "//sw/device/lib/dif:i2c",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwrmgr",
-        "//sw/device/lib/dif:rv_plic",
-        "//sw/device/lib/testing:i2c_testutils",
-        "//sw/device/lib/testing:isr_testutils",
-        "//sw/device/lib/testing:pwrmgr_testutils",
-        "//sw/device/lib/testing:rv_plic_testutils",
-        "//sw/device/lib/testing/json:command",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-        "//sw/device/lib/testing/test_framework:ottf_utils",
-        "//sw/device/lib/testing/test_framework:ujson_ottf",
-    ],
-)
-
-opentitan_test(
-    name = "i2c_target_test",
-    srcs = [
-        "i2c_target_test.c",
-    ],
-    exec_env = dicts.add(
-        EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
-        {
-            "//hw/top_earlgrey:fpga_cw310_sival": None,
-        },
-    ),
-    fpga = fpga_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-        """,
-        test_harness = "//sw/host/tests/chip/i2c_target",
-    ),
-    silicon = silicon_params(
-        test_cmd = """
-            --bootstrap="{firmware}"
-        """,
-        test_harness = "//sw/host/tests/chip/i2c_target",
-    ),
-    deps = [
-        "//sw/device/lib/arch:device",
-        "//sw/device/lib/dif:gpio",
-        "//sw/device/lib/dif:i2c",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/dif:pwrmgr",
-        "//sw/device/lib/dif:rv_plic",
-        "//sw/device/lib/testing:i2c_testutils",
-        "//sw/device/lib/testing:pwrmgr_testutils",
-        "//sw/device/lib/testing:rv_plic_testutils",
-        "//sw/device/lib/testing/json:command",
-        "//sw/device/lib/testing/json:i2c_target",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-        "//sw/device/lib/testing/test_framework:ujson_ottf",
-    ],
-)
-
 _STATUS_REPORT_TEST_MSG = "\r\n".join([
     ".*ottf_main.c:.* Status reported by the test:",
     ".*ottf_main.c:.* - Aborted:\\[\\\"THK\\\",2.\\]",
@@ -7457,7 +7259,6 @@ opentitan_binary(
     kind = "ram",
     linker_script = "//sw/device/silicon_creator/manuf/lib:sram_program_linker_script",
     deps = [
-        "//hw/top:pwm_c_regs",
         "//hw/top:rv_timer_c_regs",
         "//hw/top_earlgrey/sw/autogen:top_earlgrey",
         "//sw/device/lib/arch:device",
@@ -7487,7 +7288,6 @@ opentitan_test(
         EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
     ),
     deps = [
-        "//hw/top:pwm_c_regs",
         "//hw/top:rv_timer_c_regs",
         "//hw/top_earlgrey/sw/autogen:top_earlgrey",
         "//sw/device/lib/arch:device",
@@ -7863,49 +7663,6 @@ opentitan_test(
         "//sw/device/lib/testing:rand_testutils",
         "//sw/device/lib/testing:rv_plic_testutils",
         "//sw/device/lib/testing/test_framework:ottf_main",
-    ],
-)
-
-opentitan_test(
-    name = "pattgen_ios_test",
-    srcs = ["pattgen_ios_test.c"],
-    exec_env = dicts.add(
-        EARLGREY_SILICON_OWNER_ROM_EXT_ENVS,
-        {
-            "//hw/top_earlgrey:fpga_cw310_sival": None,
-            "//hw/top_earlgrey:fpga_cw310_sival_rom_ext": None,
-            "//hw/top_earlgrey:fpga_cw340_sival": None,
-            "//hw/top_earlgrey:fpga_cw340_sival_rom_ext": None,
-            "//hw/top_earlgrey:sim_dv": None,
-        },
-    ),
-    fpga = fpga_params(
-        test_cmd = """
-            --bootstrap={firmware}
-            --firmware-elf=\"{firmware:elf}\"
-        """,
-        test_harness = "//sw/host/tests/chip/pattgen:pattgen_ios",
-    ),
-    silicon = silicon_params(
-        test_cmd = """
-            --bootstrap={firmware}
-            --firmware-elf=\"{firmware:elf}\"
-        """,
-        test_harness = "//sw/host/tests/chip/pattgen:pattgen_ios",
-    ),
-    deps = [
-        "//hw/top_earlgrey/sw/autogen:top_earlgrey",
-        "//sw/device/lib/base:memory",
-        "//sw/device/lib/base:mmio",
-        "//sw/device/lib/dif:pattgen",
-        "//sw/device/lib/dif:pinmux",
-        "//sw/device/lib/runtime:hart",
-        "//sw/device/lib/runtime:irq",
-        "//sw/device/lib/runtime:log",
-        "//sw/device/lib/testing:rv_plic_testutils",
-        "//sw/device/lib/testing/test_framework:check",
-        "//sw/device/lib/testing/test_framework:ottf_main",
-        "//sw/device/lib/testing/test_framework:ottf_utils",
     ],
 )
 

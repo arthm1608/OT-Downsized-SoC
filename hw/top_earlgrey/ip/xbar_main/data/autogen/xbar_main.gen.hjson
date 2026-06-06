@@ -14,7 +14,6 @@
     clk_fixed_i: io_div4
     clk_usb_i: usb
     clk_spi_host0_i: io
-    clk_spi_host1_i: io_div2
   }
   clock_group: infra
   reset: rst_main_ni
@@ -40,11 +39,6 @@
       name: lc_io
       domain: Main
     }
-    rst_spi_host1_ni:
-    {
-      name: lc_io_div2
-      domain: Main
-    }
   }
   clock_connections:
   {
@@ -52,7 +46,6 @@
     clk_fixed_i: clkmgr_aon_clocks.clk_io_div4_infra
     clk_usb_i: clkmgr_aon_clocks.clk_usb_infra
     clk_spi_host0_i: clkmgr_aon_clocks.clk_io_infra
-    clk_spi_host1_i: clkmgr_aon_clocks.clk_io_div2_infra
   }
   domain: Main
   connections:
@@ -73,7 +66,6 @@
       sram_ctrl_main.ram
       peri
       spi_host0
-      spi_host1
       usbdev
       flash_ctrl.core
       flash_ctrl.prim
@@ -100,7 +92,6 @@
       sram_ctrl_main.ram
       peri
       spi_host0
-      spi_host1
       usbdev
       flash_ctrl.core
       flash_ctrl.prim
@@ -291,28 +282,6 @@
           base_addrs:
           {
             hart: 0x40300000
-          }
-          size_byte: 0x40
-        }
-      ]
-      xbar: false
-      stub: false
-      pipeline: true
-    }
-    {
-      name: spi_host1
-      type: device
-      clock: clk_spi_host1_i
-      reset: rst_spi_host1_ni
-      req_fifo_pass: false
-      rsp_fifo_pass: false
-      inst_type: spi_host
-      addr_range:
-      [
-        {
-          base_addrs:
-          {
-            hart: 0x40310000
           }
           size_byte: 0x40
         }
@@ -813,18 +782,6 @@
       width: 1
       default: ""
       top_signame: spi_host0_tl
-      index: -1
-    }
-    {
-      name: tl_spi_host1
-      struct: tl
-      package: tlul_pkg
-      type: req_rsp
-      act: req
-      inst_name: main
-      width: 1
-      default: ""
-      top_signame: spi_host1_tl
       index: -1
     }
     {
