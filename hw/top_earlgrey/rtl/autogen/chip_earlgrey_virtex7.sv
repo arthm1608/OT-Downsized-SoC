@@ -56,7 +56,13 @@ module chip_earlgrey_virtex7 #(
   inout IOR1, // MIO Pad 36 (JTAG TDO)
   inout IOR2, // MIO Pad 37 (JTAG TDI)
   inout IOR3, // MIO Pad 38 (JTAG TCK)
-  inout IOR4  // MIO Pad 39 (JTAG TRST)
+  inout IOR4,  // MIO Pad 39 (JTAG TRST)
+  inout IOA0, IOA1, IOA2, IOA3, IOA4, IOA5, IOA6, IOA7, IOA8,
+  inout IOB0, IOB1, IOB2, IOB3, IOB4, IOB5, IOB6, IOB7, IOB8, IOB9, IOB10, IOB11, IOB12,
+  inout IOC0, IOC1, IOC2, IOC5, IOC6, IOC7, IOC8, IOC9, IOC10, IOC11, IOC12,
+  inout IOR5, IOR6, IOR7, IOR10, IOR11, IOR12, IOR13,
+  inout IOR8, IOR9,
+  inout SPI_HOST_D0, SPI_HOST_D1, SPI_HOST_D2, SPI_HOST_D3, SPI_HOST_CLK, SPI_HOST_CS_L
 );
 
   // =========================================================
@@ -67,13 +73,6 @@ module chip_earlgrey_virtex7 #(
   wire IO_CLK;
   wire IO_CLKOUT;
   wire IO_TRIGGER;
-  wire SPI_HOST_D0, SPI_HOST_D1, SPI_HOST_D2, SPI_HOST_D3, SPI_HOST_CLK, SPI_HOST_CS_L;
-  wire IOR8, IOR9;
-
-  wire IOA0, IOA1, IOA2, IOA3, IOA4, IOA5, IOA6, IOA7, IOA8;
-  wire IOB0, IOB1, IOB2, IOB3, IOB4, IOB5, IOB6, IOB7, IOB8, IOB9, IOB10, IOB11, IOB12;
-  wire IOC0, IOC1, IOC2, IOC5, IOC6, IOC7, IOC8, IOC9, IOC10, IOC11, IOC12;
-  wire IOR5, IOR6, IOR7, IOR10, IOR11, IOR12, IOR13;
   wire scan_rst_n;
   wire scanmode;
 

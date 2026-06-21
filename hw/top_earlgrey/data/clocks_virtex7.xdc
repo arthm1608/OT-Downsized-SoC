@@ -170,34 +170,34 @@ create_generated_clock -name clk_spi_tpm_out -divide_by 1 -add -master_clock clk
 ## GHOSTED LOGIC - SPI PASSTHROUGH AND SPI HOST 
 ## (Commented out to prevent Vivado crashes on unmapped ports)
 ## -------------------------------------------------------------------------
-# create_generated_clock -name clk_spi_pt -divide_by 1 -source [get_ports SPI_DEV_CLK] [get_ports SPI_HOST_CLK]
-# set spi_pt_data [get_ports {SPI_HOST_D0 SPI_HOST_D1 SPI_HOST_D2 SPI_HOST_D3}]
-# set spi_host_board_skew 0.5
-# set spi_host_board_delay 0.6
-# set spi_host_out_hold      [expr -3.0 - ${spi_host_board_skew}]
-# set spi_host_out_setup     [expr  3.0 + ${spi_host_board_skew}]
-# set spi_host_in_delay_min 0
-# set spi_host_in_delay_max [expr  9.0 + 2 * ${spi_host_board_delay}]
+ create_generated_clock -name clk_spi_pt -divide_by 1 -source [get_ports SPI_DEV_CLK] [get_ports SPI_HOST_CLK]
+ set spi_pt_data [get_ports {SPI_HOST_D0 SPI_HOST_D1 SPI_HOST_D2 SPI_HOST_D3}]
+ set spi_host_board_skew 0.5
+ set spi_host_board_delay 0.6
+ set spi_host_out_hold      [expr -3.0 - ${spi_host_board_skew}]
+ set spi_host_out_setup     [expr  3.0 + ${spi_host_board_skew}]
+ set spi_host_in_delay_min 0
+ set spi_host_in_delay_max [expr  9.0 + 2 * ${spi_host_board_delay}]
 
-# set_output_delay -clock clk_spi_pt -min ${spi_host_out_hold}  ${spi_pt_data} -add_delay
-# set_output_delay -clock clk_spi_pt -max ${spi_host_out_setup} ${spi_pt_data} -add_delay
-# set_output_delay -clock clk_spi_pt -min ${spi_host_out_hold}  [get_ports SPI_HOST_CS_L] -add_delay
-# set_output_delay -clock clk_spi_pt -max ${spi_host_out_setup} [get_ports SPI_HOST_CS_L] -add_delay
-# set_input_delay  -clock clk_spi_pt -clock_fall -min ${spi_host_in_delay_min} ${spi_pt_data} -add_delay
-# set_input_delay  -clock clk_spi_pt -clock_fall -max ${spi_host_in_delay_max} ${spi_pt_data} -add_delay
+ set_output_delay -clock clk_spi_pt -min ${spi_host_out_hold}  ${spi_pt_data} -add_delay
+ set_output_delay -clock clk_spi_pt -max ${spi_host_out_setup} ${spi_pt_data} -add_delay
+ set_output_delay -clock clk_spi_pt -min ${spi_host_out_hold}  [get_ports SPI_HOST_CS_L] -add_delay
+ set_output_delay -clock clk_spi_pt -max ${spi_host_out_setup} [get_ports SPI_HOST_CS_L] -add_delay
+ set_input_delay  -clock clk_spi_pt -clock_fall -min ${spi_host_in_delay_min} ${spi_pt_data} -add_delay
+ set_input_delay  -clock clk_spi_pt -clock_fall -max ${spi_host_in_delay_max} ${spi_pt_data} -add_delay
 
 set spi_host_0_peri [get_pins top_earlgrey/u_clkmgr_aon/u_clk_io_peri_cg/gen_gate.gen_bufgce.u_bufgce/O]
 
-# create_generated_clock -name clk_spi_host0 -divide_by 2 -add -source ${spi_host_0_peri} -master_clock [get_clocks -of_objects ${spi_host_0_peri}] [get_ports SPI_HOST_CLK]
-# set_multicycle_path -setup 1 -start -from [get_clocks -of_objects ${spi_host_0_peri}] -to [get_clocks clk_spi_host0]
-# set_multicycle_path -hold 1 -start -from [get_clocks -of_objects ${spi_host_0_peri}] -to [get_clocks clk_spi_host0]
-# set_multicycle_path -setup -end 2 -from [get_clocks clk_spi_host0] -to [get_clocks -of_objects ${spi_host_0_peri}]
-# set_multicycle_path -hold -end 2 -from [get_clocks clk_spi_host0] -to [get_clocks -of_objects ${spi_host_0_peri}]
-# set spi_host_0_data [get_ports {SPI_HOST_D0 SPI_HOST_D1 SPI_HOST_D2 SPI_HOST_D3 SPI_HOST_CS_L}]
-# set_output_delay -clock clk_spi_host0 -min ${spi_host_out_hold} ${spi_host_0_data} -add_delay
-# set_output_delay -clock clk_spi_host0 -max ${spi_host_out_setup} ${spi_host_0_data} -add_delay
-# set_input_delay  -clock clk_spi_host0 -clock_fall -min ${spi_host_in_delay_min} ${spi_host_0_data} -add_delay
-# set_input_delay  -clock clk_spi_host0 -clock_fall -max ${spi_host_in_delay_max} ${spi_host_0_data} -add_delay
+create_generated_clock -name clk_spi_host0 -divide_by 2 -add -source ${spi_host_0_peri} -master_clock [get_clocks -of_objects ${spi_host_0_peri}] [get_ports SPI_HOST_CLK]
+set_multicycle_path -setup 1 -start -from [get_clocks -of_objects ${spi_host_0_peri}] -to [get_clocks clk_spi_host0]
+set_multicycle_path -hold 1 -start -from [get_clocks -of_objects ${spi_host_0_peri}] -to [get_clocks clk_spi_host0]
+set_multicycle_path -setup -end 2 -from [get_clocks clk_spi_host0] -to [get_clocks -of_objects ${spi_host_0_peri}]
+set_multicycle_path -hold -end 2 -from [get_clocks clk_spi_host0] -to [get_clocks -of_objects ${spi_host_0_peri}]
+set spi_host_0_data [get_ports {SPI_HOST_D0 SPI_HOST_D1 SPI_HOST_D2 SPI_HOST_D3 SPI_HOST_CS_L}]
+set_output_delay -clock clk_spi_host0 -min ${spi_host_out_hold} ${spi_host_0_data} -add_delay
+set_output_delay -clock clk_spi_host0 -max ${spi_host_out_setup} ${spi_host_0_data} -add_delay
+set_input_delay  -clock clk_spi_host0 -clock_fall -min ${spi_host_in_delay_min} ${spi_host_0_data} -add_delay
+set_input_delay  -clock clk_spi_host0 -clock_fall -max ${spi_host_in_delay_max} ${spi_host_0_data} -add_delay
 
 ## Set asynchronous clock groups
 set_clock_groups -asynchronous \
@@ -208,7 +208,8 @@ set_clock_groups -asynchronous \
     -group clk_io_div2 \
     -group clk_io_div4 \
     -group [get_clocks -include_generated_clocks jtag_tck] \
-    -group {clk_spi clk_spi_in clk_spi_out clk_spid_csb clk_spi_tpm clk_spi_tpm_in clk_spi_tpm_out} \
+    -group {clk_spi clk_spi_in clk_spi_out clk_spid_csb clk_spi_tpm clk_spi_tpm_in clk_spi_tpm_out clk_spi_pt} \
+    -group {clk_spi_host0} \
     -group sys_clk_pin
 
 set spi_dev_csb_clk_q_min -5.0
@@ -224,7 +225,7 @@ set_clock_groups -logically_exclusive -group clk_spi -group clk_spid_csb
 set_false_path -from [get_clocks {clk_spi_in clk_spi_out}] -through ${spi_dev_data} \
     -to [get_clocks clk_spid_csb]
 
-# set_max_delay -datapath_only -from [get_clocks clk_spid_csb] -to [get_clocks clk_spi_host0] [expr ${spi_dev_half_period} / 2]
+set_max_delay -datapath_only -from [get_clocks clk_spid_csb] -to [get_clocks clk_spi_host0] [expr ${spi_dev_half_period} / 2]
 
 set_multicycle_path -hold -end -from [get_clocks clk_spid_csb] \
     -to [get_clocks clk_spi_out] 1
@@ -234,7 +235,29 @@ set_multicycle_path -hold -end -from [get_clocks clk_spi_tpm] \
 
 ## USB constraints
 set_false_path -from ${clks_48_unbuf} -to [get_pins u_ast/u_usb_clk/u_ref_pulse_sync/u_sync*/u_sync_1/q_o_reg[0]/D]
+## --- START OF UNIFIED SPI & CONGESTION FIXES ---
 
+## 1. CONGESTION FIX: Promote Pinmux and JTAG "Dirt Roads" to Global Clock Highways
+set_property CLOCK_BUFFER_TYPE BUFG [get_nets -of_objects [get_pins -hierarchical -filter {NAME =~ *u_csb_buf_i_1/O}]]
+set_property CLOCK_BUFFER_TYPE BUFG [get_nets -of_objects [get_pins -hierarchical -filter {NAME =~ *td_o_i_2__0/O}]]
+set_property CLOCK_BUFFER_TYPE BUFG [get_nets -of_objects [get_pins -hierarchical -filter {NAME =~ *FSM_onehot_tap_state_q[15]_i_2__0/O}]]
+
+## 2. SPI MODE ISOLATION: Standard, TPM, and Passthrough modes cannot run simultaneously
+set_clock_groups -logically_exclusive \
+    -group [get_clocks -include_generated_clocks clk_spi] \
+    -group [get_clocks -include_generated_clocks clk_spi_tpm] \
+    -group [get_clocks -include_generated_clocks clk_spi_pt]
+
+## 3. THE NUCLEAR OPTION: Completely isolate the CS clock domain from TPM/PT domains globally
+set_clock_groups -asynchronous \
+    -group [get_clocks -include_generated_clocks clk_spid_csb] \
+    -group [get_clocks -include_generated_clocks {clk_spi_tpm clk_spi_pt}]
+
+## 4. PHYSICAL PORT SEVERING: Prevent Vivado from timing the IO pads against the TPM/PT clocks
+set_false_path -through [get_ports {SPI_DEV_CS_L SPI_DEV_D0 SPI_DEV_D1 SPI_DEV_D2 SPI_DEV_D3}] -to [get_clocks -include_generated_clocks {clk_spi_tpm clk_spi_pt}]
+set_false_path -from [get_clocks -include_generated_clocks {clk_spi_tpm clk_spi_pt}] -through [get_ports {SPI_DEV_CS_L SPI_DEV_D0 SPI_DEV_D1 SPI_DEV_D2 SPI_DEV_D3}]
+
+## --- END OF UNIFIED SPI & CONGESTION FIXES ---
 set_input_delay -clock ${clks_48_unbuf} -min 3 [get_ports {IO_USB_DP_RX IO_USB_DN_RX IO_USB_D_RX}]
 set_input_delay -clock ${clks_48_unbuf} -add_delay -max 17 [get_ports {IO_USB_DP_RX IO_USB_DN_RX IO_USB_D_RX}]
 
@@ -242,3 +265,5 @@ set usb_embed_out_clk [create_generated_clock -name usb_embed_out_clk -source [g
 set_false_path -from [get_clocks -include_generated_clocks clk_io_div4] -to ${usb_embed_out_clk}
 set_output_delay -min -clock ${usb_embed_out_clk} 7 [get_ports {IO_USB_DP_TX IO_USB_DN_TX}]
 set_output_delay -max -clock ${usb_embed_out_clk} 14 [get_ports {IO_USB_DP_TX IO_USB_DN_TX}] -add_delay
+
+
